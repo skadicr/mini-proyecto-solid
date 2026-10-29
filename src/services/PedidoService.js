@@ -8,22 +8,22 @@
 // import { EnvioExpress } from "../envios/EnvioExpress.js";
 // import { RetiroLocal } from "../envios/RetiroLocal.js";
 
+
 import { LocalStoragePedidoRepository } from "../repositories/LocalStoragePedidoRepository.js";
 import { EmailNotificador } from "../notifications/EmailNotificador.js";
 import { PedidoEstrategiasFactory } from "./PedidoEstrategiasFactory.js";
 
 export class PedidoService {
-  
   constructor(
-  repository = new LocalStoragePedidoRepository(),
-  notificador = new EmailNotificador(),
-  estrategiasFactory = new PedidoEstrategiasFactory(),
-) {
-  this.pedidos = [];
-  this.repository = repository;
-  this.notificador = notificador;
-  this.estrategiasFactory = estrategiasFactory;
-}
+    repository = new LocalStoragePedidoRepository(),
+    notificador = new EmailNotificador(),
+    estrategiasFactory = new PedidoEstrategiasFactory(),
+  ) {
+    this.pedidos = [];
+    this.repository = repository;
+    this.notificador = notificador;
+    this.estrategiasFactory = estrategiasFactory;
+  }
 
   registrar(pedido, tipoCliente, tipoEnvio) {
     let subtotal = 0;
@@ -32,16 +32,15 @@ export class PedidoService {
       subtotal += producto.precio;
     }
 
-  const estrategiaDescuento =
-  this.estrategiasFactory.crearDescuento(tipoCliente);
+    const estrategiaDescuento =
+      this.estrategiasFactory.crearDescuento(tipoCliente);
 
-  let total = estrategiaDescuento.aplicar(subtotal);
-
+    let total = estrategiaDescuento.aplicar(subtotal);
 
     const estrategiaEnvio =
-    this.estrategiasFactory.crearEnvio(tipoEnvio);
+      this.estrategiasFactory.crearEnvio(tipoEnvio);
 
-     const costoEnvio = estrategiaEnvio.calcularCosto();
+    const costoEnvio = estrategiaEnvio.calcularCosto();
 
     total += costoEnvio;
 
