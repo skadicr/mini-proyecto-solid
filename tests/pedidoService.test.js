@@ -213,4 +213,31 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
     expect(service.pedidos[1].pedido).toBe(pedido2);
     expect(service.pedidos[1].total).toBe(3000);
   });
+
+
+  
+test("permite inyectar un repositorio y un notificador", () => {
+  const repository = {
+    guardar: jest.fn(),
+  };
+
+  const notificador = {
+    notificar: jest.fn(),
+  };
+
+  const service = new PedidoService(repository, notificador);
+
+  const producto = new Producto(1, "Cuaderno", 1000);
+  const pedido = new Pedido(
+    { nombre: "Ana", email: "ana@example.com" },
+    [producto],
+  );
+
+  const total = service.registrar(pedido, "normal", "retiroLocal");
+
+  expect(total).toBe(1000);
+  expect(repository.guardar).toHaveBeenCalledWith(service.pedidos);
+  expect(notificador.notificar).toHaveBeenCalledWith(pedido);
+});
+
 });
