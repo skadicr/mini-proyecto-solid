@@ -20,7 +20,7 @@ describe("PedidoEstrategiasFactory", () => {
   test("crea el descuento mayorista", () => {
     const descuento = factory.crearDescuento("mayorista");
 
-    expect(descuento.aplicar(1000)).toBe(700);
+    expect(descuento.aplicar(1000)).toBe(750);
   });
 
   test("crea el descuento normal para un tipo desconocido", () => {

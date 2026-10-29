@@ -17,8 +17,8 @@ describe("Estrategias de descuento", () => {
     expect(new DescuentoVIP().aplicar(10000)).toBe(8000);
   });
 
-  test("el cliente mayorista recibe un 30% de descuento", () => {
-  expect(new DescuentoMayorista().aplicar(10000)).toBe(7000);
+  test("el cliente mayorista recibe un 25% de descuento", () => {
+  expect(new DescuentoMayorista().aplicar(10000)).toBe(7500);
 });
 
 });

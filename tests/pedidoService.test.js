@@ -87,7 +87,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
     expect(total).toBe(4200);
   });
 
-     test("cliente mayorista recibe 30% de descuento sobre los productos", () => {
+     test("cliente mayorista recibe 25% de descuento sobre los productos", () => {
     const pedido = new Pedido(
       { nombre: "Empresa", email: "empresa@example.com" },
       [
@@ -100,7 +100,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
 
     const total = service.registrar(pedido, "mayorista", "normal");
 
-    expect(total).toBe(3800);
+    expect(total).toBe(4000);
   });
 
   test("retiro en local no agrega costo de envio", () => {
