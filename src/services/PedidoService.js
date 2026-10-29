@@ -3,6 +3,9 @@ import { DescuentoNormal } from "../descuentos/DescuentoNormal.js";
 import { DescuentoPremium } from "../descuentos/DescuentoPremium.js";
 import { DescuentoVIP } from "../descuentos/DescuentoVIP.js";
 import { DescuentoMayorista } from "../descuentos/DescuentoMayorista.js";
+import { EnvioNormal } from "../envios/EnvioNormal.js";
+import { EnvioExpress } from "../envios/EnvioExpress.js";
+import { RetiroLocal } from "../envios/RetiroLocal.js";
 
 export class PedidoService {
   constructor() {
@@ -30,17 +33,19 @@ if (tipoCliente === "premium") {
 
 let total = estrategiaDescuento.aplicar(subtotal);
 
-    let costoEnvio = 0;
+    let estrategiaEnvio;
 
-    if (tipoEnvio === "normal") {
-      costoEnvio = 1000;
-    }
+if (tipoEnvio === "express") {
+  estrategiaEnvio = new EnvioExpress();
+} else if (tipoEnvio === "retiroLocal") {
+  estrategiaEnvio = new RetiroLocal();
+} else {
+  estrategiaEnvio = new EnvioNormal();
+}
 
-    if (tipoEnvio === "express") {
-      costoEnvio = 2000;
-    }
+const costoEnvio = estrategiaEnvio.calcularCosto();
 
-    total += costoEnvio;
+total += costoEnvio;
     this.pedidos.push({ pedido, total });
 
     localStorage.setItem("pedidos", JSON.stringify(this.pedidos));
