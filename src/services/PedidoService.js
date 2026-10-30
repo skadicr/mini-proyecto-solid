@@ -1,14 +1,4 @@
 
-// import { DescuentoNormal } from "../descuentos/DescuentoNormal.js";
-// import { DescuentoPremium } from "../descuentos/DescuentoPremium.js";
-// import { DescuentoVIP } from "../descuentos/DescuentoVIP.js";
-// import { DescuentoMayorista } from "../descuentos/DescuentoMayorista.js";
-
-// import { EnvioNormal } from "../envios/EnvioNormal.js";
-// import { EnvioExpress } from "../envios/EnvioExpress.js";
-// import { RetiroLocal } from "../envios/RetiroLocal.js";
-
-
 import { LocalStoragePedidoRepository } from "../repositories/LocalStoragePedidoRepository.js";
 import { EmailNotificador } from "../notifications/EmailNotificador.js";
 import { PedidoEstrategiasFactory } from "./PedidoEstrategiasFactory.js";
