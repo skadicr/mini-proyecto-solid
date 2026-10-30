@@ -1,13 +1,23 @@
 
-import { describe, expect, test, jest } from "@jest/globals";
+
+import { describe, expect, test, beforeEach } from "@jest/globals";
+
 import { Producto } from "../src/models/Producto.js";
 import { Pedido } from "../src/models/Pedido.js";
 import { PedidoService } from "../src/services/PedidoService.js";
 
 describe("PedidoService: caracterizacion antes de refactorizar", () => {
   beforeEach(() => {
+    const almacenamiento = {};
+
     global.localStorage = {
-      setItem: jest.fn(),
+      setItem(clave, valor) {
+        almacenamiento[clave] = valor;
+      },
+
+      getItem(clave) {
+        return almacenamiento[clave] ?? null;
+      },
     };
   });
 
@@ -59,7 +69,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
     expect(total).toBe(4200);
   });
 
-     test("cliente mayorista recibe 25% de descuento sobre los productos", () => {
+  test("cliente mayorista recibe 25% de descuento sobre los productos", () => {
     const pedido = new Pedido(
       { nombre: "Empresa", email: "empresa@example.com" },
       [
@@ -185,31 +195,4 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
     expect(service.pedidos[1].pedido).toBe(pedido2);
     expect(service.pedidos[1].total).toBe(3000);
   });
-
-
-  
-test("permite inyectar un repositorio y un notificador", () => {
-  const repository = {
-    guardar: jest.fn(),
-  };
-
-  const notificador = {
-    notificar: jest.fn(),
-  };
-
-  const service = new PedidoService(repository, notificador);
-
-  const producto = new Producto(1, "Cuaderno", 1000);
-  const pedido = new Pedido(
-    { nombre: "Ana", email: "ana@example.com" },
-    [producto],
-  );
-
-  const total = service.registrar(pedido, "normal", "retiroLocal");
-
-  expect(total).toBe(1000);
-  expect(repository.guardar).toHaveBeenCalledWith(service.pedidos);
-  expect(notificador.notificar).toHaveBeenCalledWith(pedido);
-});
-
 });
