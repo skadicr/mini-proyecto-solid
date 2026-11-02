@@ -91,7 +91,6 @@ Las pruebas verifican:
 - La combinación de diferentes tipos de cliente y envío.
 - El registro de uno o varios pedidos.
 - La selección de estrategias mediante la factory.
-- La inyección del repositorio, el notificador y la factory.
 
 Las pruebas se ejecutan antes y después de los cambios para comprobar que se mantenga el comportamiento esperado.
 
