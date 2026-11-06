@@ -8,15 +8,6 @@ import { PedidoService } from "../src/services/PedidoService.js";
 describe("PedidoService: caracterizacion antes de refactorizar", () => {
 
   test("cliente normal con envio normal paga subtotal mas 1000", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -33,15 +24,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("cliente premium recibe 10% de descuento sobre los productos", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -58,15 +40,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("cliente VIP recibe 20% de descuento sobre los productos", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -83,15 +56,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("cliente mayorista recibe 25% de descuento sobre los productos", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Empresa", email: "empresa@example.com" },
@@ -108,15 +72,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("retiro en local no agrega costo de envio", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -130,15 +85,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("envio express agrega 2000", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
+
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -152,15 +99,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("el descuento no se aplica al costo de envio", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -174,15 +112,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("combina distintos tipos de cliente y envio", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -199,15 +128,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("conserva correctamente un total con decimales", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -224,15 +144,7 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("registra el pedido y el total en memoria", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
+
 
     const pedido = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
@@ -248,15 +160,6 @@ describe("PedidoService: caracterizacion antes de refactorizar", () => {
   });
 
   test("conserva dos pedidos registrados con la misma instancia", () => {
-    const almacenamiento = {};
-    global.localStorage = {
-      setItem(clave, valor) {
-        almacenamiento[clave] = valor;
-      },
-      getItem(clave) {
-        return almacenamiento[clave] ?? null;
-      },
-    };
 
     const pedido1 = new Pedido(
       { nombre: "Ana", email: "ana@example.com" },
